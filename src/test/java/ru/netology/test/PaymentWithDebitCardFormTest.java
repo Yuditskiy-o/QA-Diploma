@@ -16,8 +16,6 @@ import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.SQLHelper.*;
 
 public class PaymentWithDebitCardFormTest {
-    private final String approvedStatus = "APPROVED";
-    private final String declinedStatus = "DECLINED";
     MainPage mainPage = new MainPage();
     PaymentPage paymentPage = new PaymentPage();
 
@@ -49,7 +47,6 @@ public class PaymentWithDebitCardFormTest {
         private final DataHelper.Year year = getValidYear();
         private final DataHelper.Owner owner = getValidOwner();
         private final DataHelper.Cvv cvv = getValidCVV();
-        private final String paymentAmount = "4500000";
 
         @Test
         public void shouldDoPaymentWhenValidApprovedCards() {
@@ -57,10 +54,12 @@ public class PaymentWithDebitCardFormTest {
             paymentPage.fillForm(number, month, year, owner, cvv);
             paymentPage.successMessage();
             val paymentId = getPaymentId();
+            val expectedAmount = "4500000";
             val actualAmount = getPaymentAmount(paymentId);
+            val expectedStatus = "APPROVED";
             val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
-            assertEquals(approvedStatus, actualStatus);
-            assertEquals(paymentAmount, actualAmount);
+            assertEquals(expectedAmount, actualAmount);
+            assertEquals(expectedStatus, actualStatus);
         }
 
         @Test
@@ -69,8 +68,9 @@ public class PaymentWithDebitCardFormTest {
             paymentPage.fillForm(number, month, year, owner, cvv);
             paymentPage.failMessage();
             val paymentId = getPaymentId();
+            val expectedStatus = "DECLINED";
             val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
-            assertEquals(declinedStatus, actualStatus);
+            assertEquals(expectedStatus, actualStatus);
         }
     }
 
