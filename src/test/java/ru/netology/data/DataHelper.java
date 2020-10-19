@@ -27,7 +27,7 @@ public class DataHelper {
         return new Number("444444444444444");
     }
 
-    public static Number getOtherBankCard() {
+    public static Number getAnotherBankCard() {
         return new Number("5559444444444444");
     }
 
@@ -44,15 +44,15 @@ public class DataHelper {
         return new Month("");
     }
 
-    public static Month getInvalidMonthLess() {
+    public static Month getInvalidFormatMonthIsZeroZero() {
         return new Month("00");
     }
 
-    public static Month getInvalidMonthMore() {
+    public static Month getInvalidFormatMonthIsIrrelevant() {
         return new Month("13");
     }
 
-    public static Month getInvalidFormatMonthLess() {
+    public static Month getInvalidFormatMonthIsOneDigit() {
         return new Month("8");
     }
 
@@ -90,11 +90,11 @@ public class DataHelper {
         return new Owner("");
     }
 
-    public static Owner getInvalidOwnerWith1Word() {
+    public static Owner getInvalidOwnerWithOneWord() {
         return new Owner("Ivan");
     }
 
-    public static Owner getInvalidOwnerWith3Words() {
+    public static Owner getInvalidOwnerWithThreeWords() {
         return new Owner("Ivanov Petr Ivanovich");
     }
 
@@ -111,7 +111,7 @@ public class DataHelper {
     }
 
     public static Owner getInvalidOwnerWithDigits() {
-        return new Owner("Иванов Петр");
+        return new Owner("12345");
     }
 
     public static Owner getInvalidOwnerWithSymbols() {
@@ -131,15 +131,11 @@ public class DataHelper {
         return new Cvv("");
     }
 
-    public static Cvv getInvalidCVVWith1Symbol() {
+    public static Cvv getInvalidCVVWith1Digit() {
         return new Cvv("1");
     }
 
-    public static Cvv getInvalidCVVWith2Symbols() {
+    public static Cvv getInvalidCVVWith2Digits() {
         return new Cvv("11");
-    }
-
-    public static Cvv getInvalidCVVWith4Symbols() {
-        return new Cvv("1111");
     }
 }

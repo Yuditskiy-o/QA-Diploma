@@ -28,57 +28,70 @@ public class SQLHelper {
         }
     }
 
-    public static String getAnyData(String getStatus, String column) {
+    public static String getPaymentId() {
+        String paymentId = "";
+        val idSQL = "SELECT payment_id FROM order_entity ORDER BY created DESC LIMIT 1;";
         try (val conn = getConnection();
-             val countStmt = conn.createStatement();
-        ) {
-            try (val rs = countStmt.executeQuery(getStatus)) {
+             val statusStmt = conn.prepareStatement(idSQL)) {
+            try (val rs = statusStmt.executeQuery()) {
                 if (rs.next()) {
-                    val data = rs.getString(column);
-                    return data;
+                    paymentId = rs.getString("payment_id");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return paymentId;
     }
 
-    public static String getCreditStatus() {
-        val getStatus = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
-        val column = "status";
-        return SQLHelper.getAnyData(getStatus, column);
+    public static String getPaymentAmount(String paymentId) {
+        String amountSQL = "SELECT amount FROM payment_entity WHERE transaction_id =?; ";
+        String amount = "";
+        try (val conn = getConnection();
+             val statusStmt = conn.prepareStatement(amountSQL)) {
+            statusStmt.setString(1, paymentId);
+            try (val rs = statusStmt.executeQuery()) {
+                if (rs.next()) {
+                    amount = rs.getString("amount");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return amount;
     }
 
-    public static String getPaymentStatus() {
-        val getStatus = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
-        val column = "status";
-        return SQLHelper.getAnyData(getStatus, column);
+    public static String getStatusForPaymentWithDebitCard(String paymentId) {
+        String statusSQL = "SELECT status FROM payment_entity WHERE transaction_id =?; ";
+        String status = "";
+        try (val conn = getConnection();
+             val statusStmt = conn.prepareStatement(statusSQL)) {
+            statusStmt.setString(1, paymentId);
+            try (val rs = statusStmt.executeQuery()) {
+                if (rs.next()) {
+                    status = rs.getString("status");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 
-    public static String getPaymentID() {
-        val getStatus = "SELECT payment_id FROM order_entity ORDER BY created DESC LIMIT 1";
-        val column = "payment_id";
-        return SQLHelper.getAnyData(getStatus, column);
-    }
-
-    public static String getCreditID() {
-        val getStatus = "SELECT bank_id FROM credit_request_entity ORDER BY created DESC LIMIT 1";
-        val column = "bank_id";
-        return SQLHelper.getAnyData(getStatus, column);
-    }
-
-    public static String getTransactionID() {
-        val getStatus = "SELECT transaction_id FROM payment_entity ORDER BY created DESC LIMIT 1";
-        val column = "transaction_id";
-        return SQLHelper.getAnyData(getStatus, column);
-    }
-
-    public static void comparePaymentAndTransactionID() {
-        getPaymentID().equals(getTransactionID());
-    }
-
-    public static void compareCreditAndTransactionID() {
-        getCreditID().equals(getTransactionID());
+    public static String getStatusForPaymentWithCreditCard(String paymentId) {
+        String statusSQL = "SELECT status FROM credit_request_entity WHERE bank_id =?; ";
+        String status = "";
+        try (val conn = getConnection();
+             val statusStmt = conn.prepareStatement(statusSQL)) {
+            statusStmt.setString(1, paymentId);
+            try (val rs = statusStmt.executeQuery()) {
+                if (rs.next()) {
+                    status = rs.getString("status");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 }

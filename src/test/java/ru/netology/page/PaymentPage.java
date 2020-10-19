@@ -14,7 +14,7 @@ public class PaymentPage {
     private SelenideElement numberField = $("[placeholder='0000 0000 0000 0000']");
     private SelenideElement monthField = $("[placeholder='08']");
     private SelenideElement yearField = $("[placeholder='22']");
-    private SelenideElement ownerField =  fields.get(3);
+    private SelenideElement ownerField = fields.get(3);
     private SelenideElement cvvField = $("[placeholder='999']");
 
     private SelenideElement continueButton = $(byText("Продолжить"));
@@ -36,30 +36,26 @@ public class PaymentPage {
     }
 
     public void successMessage() {
-        successNotification.waitUntil(Condition.visible, 15000);
+        successNotification.waitUntil(Condition.visible, 10000);
     }
 
     public void failMessage() {
-        failNotification.waitUntil(Condition.visible, 15000);
+        failNotification.waitUntil(Condition.visible, 10000);
     }
 
-    public void wrongFormatCardMessage() {
-        wrongFormat.waitUntil(Condition.visible, 15000);
+    public void wrongFormatMessage() {
+        wrongFormat.waitUntil(Condition.visible, 10000);
     }
 
     public void wrongTermMessage() {
-        wrongTerm.waitUntil(Condition.visible, 15000);
+        wrongTerm.waitUntil(Condition.visible, 10000);
     }
 
     public void cardExpiredMessage() {
-        cardExpired.waitUntil(Condition.visible, 15000);
+        cardExpired.waitUntil(Condition.visible, 10000);
     }
 
     public void shouldFillMessage() {
-        fieldRequired.waitUntil(Condition.visible, 15000);
-    }
-
-    public void continueButtonShouldBeDisabled() {
-        continueButton.shouldBe(Condition.disabled);
+        fieldRequired.waitUntil(Condition.visible, 10000);
     }
 }
