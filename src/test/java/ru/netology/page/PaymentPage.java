@@ -1,7 +1,9 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -15,7 +17,7 @@ public class PaymentPage {
     private SelenideElement ownerField =  fields.get(3);
     private SelenideElement cvvField = $("[placeholder='999']");
 
-    private SelenideElement button = $(byText("Продолжить"));
+    private SelenideElement continueButton = $(byText("Продолжить"));
 
     private SelenideElement successNotification = $(byText("Операция одобрена Банком."));
     private SelenideElement failNotification = $(byText("Ошибка! Банк отказал в проведении операции."));
@@ -24,4 +26,40 @@ public class PaymentPage {
     private SelenideElement cardExpired = $(byText("Истёк срок действия карты"));
     private SelenideElement fieldRequired = $(byText("Поле обязательно для заполнения"));
 
+    public void fillForm(DataHelper.Number number, DataHelper.Month Month, DataHelper.Year Year, DataHelper.Owner Owner, DataHelper.Cvv Cvv) {
+        numberField.setValue(number.getNumber());
+        monthField.setValue(Month.getMonth());
+        yearField.setValue(Year.getYear());
+        ownerField.setValue(Owner.getOwner());
+        cvvField.setValue(Cvv.getCvv());
+        continueButton.click();
+    }
+
+    public void successMessage() {
+        successNotification.waitUntil(Condition.visible, 15000);
+    }
+
+    public void failMessage() {
+        failNotification.waitUntil(Condition.visible, 15000);
+    }
+
+    public void wrongFormatCardMessage() {
+        wrongFormat.waitUntil(Condition.visible, 15000);
+    }
+
+    public void wrongTermMessage() {
+        wrongTerm.waitUntil(Condition.visible, 15000);
+    }
+
+    public void cardExpiredMessage() {
+        cardExpired.waitUntil(Condition.visible, 15000);
+    }
+
+    public void shouldFillMessage() {
+        fieldRequired.waitUntil(Condition.visible, 15000);
+    }
+
+    public void continueButtonShouldBeDisabled() {
+        continueButton.shouldBe(Condition.disabled);
+    }
 }
