@@ -105,10 +105,10 @@ public class PaymentWithDebitCardFormTest {
 
     @Nested
     public class FieldMonthTests {
-        private DataHelper.Number number = getValidApprovedCard();
-        private DataHelper.Year year = getValidYear();
-        private DataHelper.Owner owner = getValidOwner();
-        private DataHelper.Cvv cvv = getValidCVV();
+        private final DataHelper.Number number = getValidApprovedCard();
+        private final DataHelper.Year year = getValidYear();
+        private final DataHelper.Owner owner = getValidOwner();
+        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotDoPaymentWhenEmptyMonth() {
@@ -141,10 +141,10 @@ public class PaymentWithDebitCardFormTest {
 
     @Nested
     public class FieldYearTests {
-        DataHelper.Number number = DataHelper.getValidApprovedCard();
-        DataHelper.Month month = DataHelper.getValidMonth();
-        DataHelper.Owner owner = DataHelper.getValidOwner();
-        DataHelper.Cvv cvv = DataHelper.getValidCVV();
+        private final DataHelper.Number number = getValidApprovedCard();
+        private final DataHelper.Month month = getValidMonth();
+        private final DataHelper.Owner owner = getValidOwner();
+        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotDoPaymentWhenYearEmpty() {
@@ -170,10 +170,10 @@ public class PaymentWithDebitCardFormTest {
 
     @Nested
     public class FieldOwnerTests {
-        DataHelper.Number number = DataHelper.getValidApprovedCard();
-        DataHelper.Month month = DataHelper.getValidMonth();
-        DataHelper.Year year = DataHelper.getValidYear();
-        DataHelper.Cvv cvv = DataHelper.getValidCVV();
+        private final DataHelper.Number number = getValidApprovedCard();
+        private final DataHelper.Month month = getValidMonth();
+        private final DataHelper.Year year = getValidYear();
+        private final DataHelper.Cvv cvv = getValidCVV();
 
         @Test
         void shouldNotDoPaymentWhenOwnerEmpty() {
@@ -234,10 +234,10 @@ public class PaymentWithDebitCardFormTest {
 
     @Nested
     public class FieldCVVTests {
-        DataHelper.Number number = DataHelper.getValidApprovedCard();
-        DataHelper.Month month = DataHelper.getValidMonth();
-        DataHelper.Year year = DataHelper.getValidYear();
-        DataHelper.Owner owner = DataHelper.getValidOwner();
+        private final DataHelper.Number number = getValidApprovedCard();
+        private final DataHelper.Month month = getValidMonth();
+        private final DataHelper.Year year = getValidYear();
+        private final DataHelper.Owner owner = getValidOwner();
 
         @Test
         void shouldNotDoPaymentWhenСVVIsEmpty() {
