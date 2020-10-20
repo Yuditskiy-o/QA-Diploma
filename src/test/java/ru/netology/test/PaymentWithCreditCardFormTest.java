@@ -1,5 +1,4 @@
 package ru.netology.test;
-
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.SQLHelper.*;
 
-public class PaymentWithDebitCardFormTest {
+public class PaymentWithCreditCardFormTest {
     MainPage mainPage = new MainPage();
     PaymentPage paymentPage = new PaymentPage();
 
@@ -38,11 +37,11 @@ public class PaymentWithDebitCardFormTest {
     @BeforeEach
     void setUp() {
         open("http://localhost:8080");
-        mainPage.payWithDebitCard();
+        mainPage.payWithCreditCard();
     }
 
     @Nested
-    public class HappyPath1Tests {
+    public class HappyPath2Tests {
         private final DataHelper.Month month = getValidMonth();
         private final DataHelper.Year year = getValidYear();
         private final DataHelper.Owner owner = getValidOwner();
@@ -54,11 +53,8 @@ public class PaymentWithDebitCardFormTest {
             paymentPage.fillForm(number, month, year, owner, cvv);
             paymentPage.successMessage();
             val paymentId = getPaymentId();
-            val expectedAmount = "4500000";
-            val actualAmount = getPaymentAmount(paymentId);
             val expectedStatus = "APPROVED";
-            val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
-            assertEquals(expectedAmount, actualAmount);
+            val actualStatus = getStatusForPaymentWithCreditCard(paymentId);
             assertEquals(expectedStatus, actualStatus);
         }
 
@@ -69,7 +65,7 @@ public class PaymentWithDebitCardFormTest {
             paymentPage.failMessage();
             val paymentId = getPaymentId();
             val expectedStatus = "DECLINED";
-            val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
+            val actualStatus = getStatusForPaymentWithCreditCard(paymentId);
             assertEquals(expectedStatus, actualStatus);
         }
     }
