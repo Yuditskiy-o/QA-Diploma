@@ -34,7 +34,6 @@ public class ApiTest {
 
                 .then()
                 .statusCode(200)
-                .contentType(ContentType.JSON)
                 .extract().response().asString();
         assertTrue(response.contains("APPROVED"));
     }
@@ -51,7 +50,6 @@ public class ApiTest {
 
                 .then()
                 .statusCode(200)
-                .contentType(ContentType.JSON)
                 .extract().response().asString();
         assertTrue(response.contains("DECLINED"));
     }
@@ -68,7 +66,6 @@ public class ApiTest {
 
                 .then()
                 .statusCode(200)
-                .contentType(ContentType.JSON)
                 .extract().response().asString();
         assertTrue(response.contains("APPROVED"));
     }
@@ -85,7 +82,6 @@ public class ApiTest {
 
                 .then()
                 .statusCode(200)
-                .contentType(ContentType.JSON)
                 .extract().response().asString();
         assertTrue(response.contains("DECLINED"));
     }

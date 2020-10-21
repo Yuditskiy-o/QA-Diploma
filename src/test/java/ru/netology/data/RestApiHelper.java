@@ -22,26 +22,24 @@ public class RestApiHelper {
                 .body(cardInformationForApi)
 
                 .when()
-                    .post("/api/v1/pay")
+                .post("/api/v1/pay")
 
-                .then().log().all()
-                    .statusCode(200)
-                    .extract().response()
-                    .asString();
+                .then()
+                .statusCode(200)
+                .extract().response().asString();
     }
 
     public static void fillPaymentFormWithCreditCardData(DataHelper.CardInformationForApi cardInformationForApi) {
         given()
-                    .spec(requestSpec)
-                    .body(cardInformationForApi)
+                .spec(requestSpec)
+                .body(cardInformationForApi)
 
                 .when()
-                    .post("/api/v1/credit")
+                .post("/api/v1/credit")
 
-                .then().log().all()
-                    .statusCode(200)
-                    .extract().response()
-                    .asString();
+                .then()
+                .statusCode(200)
+                .extract().response().asString();
     }
 }
 
