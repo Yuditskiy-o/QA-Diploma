@@ -138,4 +138,21 @@ public class DataHelper {
     public static Cvv getInvalidCVVWith2Digits() {
         return new Cvv("11");
     }
+
+    @Value
+    public static class CardInformationForApi {
+        String cvc;
+        String holder;
+        String month;
+        String number;
+        String year;
+    }
+
+    public static CardInformationForApi getValidApprovedCardForApi() {
+        return new CardInformationForApi("111", "Ivanov Petr", "10", "4444444444444441", "22");
+    }
+
+    public static CardInformationForApi getValidDeclinedCardForApi() {
+        return new CardInformationForApi("111", "Ivanov Petr", "10", "4444444444444442", "22");
+    }
 }
