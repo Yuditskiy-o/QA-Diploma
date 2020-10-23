@@ -99,7 +99,7 @@ public class PaymentWithDebitCardFormTest {
         void shouldNotDoPaymentWhenAnotherBankCard() {
             val number = getAnotherBankCard();
             paymentPage.fillForm(number, month, year, owner, cvv);
-            paymentPage.wrongFormatMessage();
+            paymentPage.failMessage();
         }
     }
 
