@@ -10,14 +10,15 @@ import static io.restassured.RestAssured.given;
 
 public class RestApiHelper {
     public static RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://localhost:8080")
+            .setBaseUri("http://localhost")
+            .setPort(8080)
             .setAccept(ContentType.JSON)
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
 
-    public static void fillPaymentFormWithDebitCardData(DataHelper.CardInformationForApi cardInformationForApi) {
-        given()
+    public static String fillPaymentFormWithDebitCardData(DataHelper.CardInformationForApi cardInformationForApi) {
+        return given()
                 .spec(requestSpec)
                 .body(cardInformationForApi)
 
@@ -29,8 +30,8 @@ public class RestApiHelper {
                 .extract().response().asString();
     }
 
-    public static void fillPaymentFormWithCreditCardData(DataHelper.CardInformationForApi cardInformationForApi) {
-        given()
+    public static String fillPaymentFormWithCreditCardData(DataHelper.CardInformationForApi cardInformationForApi) {
+        return given()
                 .spec(requestSpec)
                 .body(cardInformationForApi)
 
