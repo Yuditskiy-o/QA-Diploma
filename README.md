@@ -18,7 +18,7 @@
 - [Комплексный отчет по итогам всего процесса автоматизации](https://github.com/Yuditskiy-o/QA-Diploma/blob/master/documents/Summary.md)
 
 ## **Перед началом работы**
-1. Загрузите на свой ПК данный репозиторий. Для этого в IntelliJ IDEA нажмите "Get from Version Control" и вставьте ссылку https://github.com/Yuditskiy-o/QA-Diploma в поле URL, нажмите "Clone".
+1. Загрузите на свой ПК данный репозиторий. Для этого либо воспользуйтесь командой git clone, либо в IntelliJ IDEA нажмите "Get from Version Control" и вставьте ссылку https://github.com/Yuditskiy-o/QA-Diploma в поле URL, нажмите "Clone".
 ![image](https://i.gyazo.com/d39a0b3f4e85db1b434e515a683d4cfd.png)
 ![image](https://i.gyazo.com/401bf3ea85f02b6ebd91793de9550d57.png)
 2. Установите Docker Desktop или Docker Toolbox (в зависимости от вашей ОС). Ознакомьте с [этой](https://github.com/netology-code/aqa-homeworks/blob/aqa4/docker/installation.md) инструкцией.
