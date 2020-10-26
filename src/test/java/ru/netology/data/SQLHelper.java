@@ -45,7 +45,7 @@ public class SQLHelper {
     }
 
     public static String getPaymentAmount(String paymentId) {
-        String amountSQL = "SELECT amount FROM payment_entity WHERE transaction_id =?; ";
+        String amountSQL = "SELECT amount FROM payment_entity WHERE transaction_id =?;";
         String amount = "";
         try (val conn = getConnection();
              val statusStmt = conn.prepareStatement(amountSQL)) {
@@ -62,7 +62,7 @@ public class SQLHelper {
     }
 
     public static String getStatusForPaymentWithDebitCard(String paymentId) {
-        String statusSQL = "SELECT status FROM payment_entity WHERE transaction_id =?; ";
+        String statusSQL = "SELECT status FROM payment_entity WHERE transaction_id =?;";
         String status = "";
         try (val conn = getConnection();
              val statusStmt = conn.prepareStatement(statusSQL)) {
@@ -79,7 +79,7 @@ public class SQLHelper {
     }
 
     public static String getStatusForPaymentWithCreditCard(String paymentId) {
-        String statusSQL = "SELECT status FROM credit_request_entity WHERE bank_id =?; ";
+        String statusSQL = "SELECT status FROM credit_request_entity WHERE bank_id =?;";
         String status = "";
         try (val conn = getConnection();
              val statusStmt = conn.prepareStatement(statusSQL)) {
