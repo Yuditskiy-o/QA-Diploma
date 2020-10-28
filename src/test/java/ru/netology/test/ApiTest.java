@@ -7,9 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.RestApiHelper.*;
 
-
-
 public class ApiTest {
+
     @Test
     void shouldGiveResponseForValidApprovedDebitCard() {
         val validApprovedCardForApi = getValidApprovedCardData();
