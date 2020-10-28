@@ -17,10 +17,10 @@ public class RestApiHelper {
             .log(LogDetail.ALL)
             .build();
 
-    public static String fillPaymentFormWithDebitCardData(DataHelper.CardInformationForApi cardInformationForApi) {
+    public static String fillPaymentFormWithDebitCardData(DataHelper.CardValidInformationModel cardValidInformationModel) {
         return given()
                 .spec(requestSpec)
-                .body(cardInformationForApi)
+                .body(cardValidInformationModel)
 
                 .when()
                 .post("/api/v1/pay")
@@ -30,10 +30,10 @@ public class RestApiHelper {
                 .extract().response().asString();
     }
 
-    public static String fillPaymentFormWithCreditCardData(DataHelper.CardInformationForApi cardInformationForApi) {
+    public static String fillPaymentFormWithCreditCardData(DataHelper.CardValidInformationModel cardValidInformationModel) {
         return given()
                 .spec(requestSpec)
-                .body(cardInformationForApi)
+                .body(cardValidInformationModel)
 
                 .when()
                 .post("/api/v1/credit")

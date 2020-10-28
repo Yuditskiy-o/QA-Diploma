@@ -1,4 +1,4 @@
-package ru.netology.page;
+package ru.netology.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -21,41 +21,41 @@ public class PaymentPage {
 
     private final SelenideElement successNotification = $(byText("Операция одобрена Банком."));
     private final SelenideElement failNotification = $(byText("Ошибка! Банк отказал в проведении операции."));
-    private final SelenideElement wrongFormat = $(byText("Неверный формат"));
-    private final SelenideElement wrongTerm = $(byText("Неверно указан срок действия карты"));
-    private final SelenideElement cardExpired = $(byText("Истёк срок действия карты"));
-    private final SelenideElement fieldRequired = $(byText("Поле обязательно для заполнения"));
+    private final SelenideElement wrongFormatMessage = $(byText("Неверный формат"));
+    private final SelenideElement wrongTermMessage = $(byText("Неверно указан срок действия карты"));
+    private final SelenideElement cardExpiredMessage = $(byText("Истёк срок действия карты"));
+    private final SelenideElement fieldFillRequiredMessage = $(byText("Поле обязательно для заполнения"));
 
-    public void fillForm(DataHelper.Number number, DataHelper.Month Month, DataHelper.Year Year, DataHelper.Owner Owner, DataHelper.Cvv Cvv) {
-        numberField.setValue(number.getNumber());
-        monthField.setValue(Month.getMonth());
-        yearField.setValue(Year.getYear());
-        ownerField.setValue(Owner.getOwner());
-        cvvField.setValue(Cvv.getCvv());
+    public void fillForm(DataHelper.CardValidInformationModel info) {
+        numberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getOwner());
+        cvvField.setValue(info.getСvv());
         continueButton.click();
     }
 
-    public void successMessage() {
+    public void waitIfSuccessMessage() {
         successNotification.waitUntil(Condition.visible, 10000);
     }
 
-    public void failMessage() {
+    public void waitIfFailMessage() {
         failNotification.waitUntil(Condition.visible, 10000);
     }
 
-    public void wrongFormatMessage() {
-        wrongFormat.waitUntil(Condition.visible, 10000);
+    public void waitIfWrongFormatMessage() {
+        wrongFormatMessage.waitUntil(Condition.visible, 10000);
     }
 
-    public void wrongTermMessage() {
-        wrongTerm.waitUntil(Condition.visible, 10000);
+    public void waitIfWrongTermMessage() {
+        wrongTermMessage.waitUntil(Condition.visible, 10000);
     }
 
-    public void cardExpiredMessage() {
-        cardExpired.waitUntil(Condition.visible, 10000);
+    public void waitIfCardExpiredMessage() {
+        cardExpiredMessage.waitUntil(Condition.visible, 10000);
     }
 
-    public void shouldFillMessage() {
-        fieldRequired.waitUntil(Condition.visible, 10000);
+    public void waitIfShouldFillFieldMessage() {
+        fieldFillRequiredMessage.waitUntil(Condition.visible, 10000);
     }
 }

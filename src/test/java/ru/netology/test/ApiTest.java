@@ -12,28 +12,28 @@ import static ru.netology.data.RestApiHelper.*;
 public class ApiTest {
     @Test
     void shouldGiveResponseForValidApprovedDebitCard() {
-        val validApprovedCardForApi = getValidApprovedCardForApi();
+        val validApprovedCardForApi = getValidApprovedCardData();
         val response = fillPaymentFormWithDebitCardData(validApprovedCardForApi);
         assertTrue(response.contains("APPROVED"));
     }
 
     @Test
     void shouldGiveResponseForValidDeclinedDebitCard() {
-        val validDeclinedCardForApi = getValidDeclinedCardForApi();
+        val validDeclinedCardForApi = getValidDeclinedCardData();
         val response = fillPaymentFormWithDebitCardData(validDeclinedCardForApi);
         assertTrue(response.contains("DECLINED"));
     }
 
     @Test
     void shouldGiveResponseForValidApprovedCreditCard() {
-        val validApprovedCardForApi = getValidApprovedCardForApi();
+        val validApprovedCardForApi = getValidApprovedCardData();
         val response = fillPaymentFormWithCreditCardData(validApprovedCardForApi);
         assertTrue(response.contains("APPROVED"));
     }
 
     @Test
     void shouldGiveResponseForValidDeclinedCreditCard() {
-        val validDeclinedCardForApi = getValidDeclinedCardForApi();
+        val validDeclinedCardForApi = getValidDeclinedCardData();
         val response = fillPaymentFormWithCreditCardData(validDeclinedCardForApi);
         assertTrue(response.contains("DECLINED"));
     }
