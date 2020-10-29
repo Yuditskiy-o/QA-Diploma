@@ -45,13 +45,15 @@ public class HappyPathTest {
             val info = getValidApprovedCardData();
             paymentPage.fillForm(info);
             paymentPage.waitIfSuccessMessage();
-            val paymentId = getPaymentId();
             val expectedAmount = "4500000";
-            val actualAmount = getPaymentAmount(paymentId);
-            val expectedStatus = "APPROVED";
-            val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
+            val actualAmount = getPaymentAmount();
             assertEquals(expectedAmount, actualAmount);
+            val expectedStatus = "APPROVED";
+            val actualStatus = getStatusForPaymentWithDebitCard();
             assertEquals(expectedStatus, actualStatus);
+            val expectedId = getPaymentId();
+            val actualId = getOrderPaymentId();
+            assertEquals(expectedId, actualId);
         }
 
         @Test
@@ -59,10 +61,12 @@ public class HappyPathTest {
             val info = getValidDeclinedCardData();
             paymentPage.fillForm(info);
             paymentPage.waitIfFailMessage();
-            val paymentId = getPaymentId();
             val expectedStatus = "DECLINED";
-            val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
+            val actualStatus = getStatusForPaymentWithDebitCard();
             assertEquals(expectedStatus, actualStatus);
+            val expectedId = getPaymentId();
+            val actualId = getOrderPaymentId();
+            assertEquals(expectedId, actualId);
         }
     }
 
@@ -79,10 +83,12 @@ public class HappyPathTest {
             val info = getValidApprovedCardData();
             paymentPage.fillForm(info);
             paymentPage.waitIfSuccessMessage();
-            val paymentId = getPaymentId();
             val expectedStatus = "APPROVED";
-            val actualStatus = getStatusForPaymentWithCreditCard(paymentId);
+            val actualStatus = getStatusForPaymentWithCreditCard();
             assertEquals(expectedStatus, actualStatus);
+            val expectedId = getCreditId();
+            val actualId = getOrderCreditId();
+            assertEquals(expectedId, actualId);
         }
 
         @Test
@@ -90,10 +96,12 @@ public class HappyPathTest {
             val info = getValidDeclinedCardData();
             paymentPage.fillForm(info);
             paymentPage.waitIfFailMessage();
-            val paymentId = getPaymentId();
             val expectedStatus = "DECLINED";
-            val actualStatus = getStatusForPaymentWithCreditCard(paymentId);
+            val actualStatus = getStatusForPaymentWithCreditCard();
             assertEquals(expectedStatus, actualStatus);
+            val expectedId = getCreditId();
+            val actualId = getOrderCreditId();
+            assertEquals(expectedId, actualId);
         }
     }
 }

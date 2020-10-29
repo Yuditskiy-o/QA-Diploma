@@ -2,6 +2,10 @@ package ru.netology.data;
 
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import ru.netology.sqlentities.CreditRequestEntity;
+import ru.netology.sqlentities.OrderEntity;
+import ru.netology.sqlentities.PaymentEntity;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +23,7 @@ public class SQLHelper {
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
-                "jdbc:postgresql://192.168.99.100:5432/app", "app", "pass");
+                "jdbc:mysql://192.168.99.100:3306/app ", "app", "pass");
     }
 
     public static void cleanDb() {
@@ -37,70 +41,87 @@ public class SQLHelper {
         }
     }
 
+    public static String getStatusForPaymentWithDebitCard() {
+        val extractStatus = "SELECT * FROM payment_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val debitCardStatus = runner.query(conn, extractStatus, new BeanHandler<>(PaymentEntity.class));
+            return debitCardStatus.getStatus();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getStatusForPaymentWithCreditCard() {
+        val extractStatus = "SELECT * FROM credit_request_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val creditCardStatus = runner.query(conn, extractStatus, new BeanHandler<>(CreditRequestEntity.class));
+            return creditCardStatus.getStatus();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String getPaymentId() {
-        String paymentId = "";
-        val idSQL = "SELECT payment_id FROM order_entity ORDER BY created DESC LIMIT 1;";
-        try (val conn = getConnection();
-             val statusStmt = conn.prepareStatement(idSQL)) {
-            try (val rs = statusStmt.executeQuery()) {
-                if (rs.next()) {
-                    paymentId = rs.getString("payment_id");
-                }
-            }
+        val extractTransactionId = "SELECT * FROM payment_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val transactionId = runner.query(conn, extractTransactionId, new BeanHandler<>(PaymentEntity.class));
+            return transactionId.getTransaction_id();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return paymentId;
+        return null;
     }
 
-    public static String getPaymentAmount(String paymentId) {
-        String amountSQL = "SELECT amount FROM payment_entity WHERE transaction_id =?;";
-        String amount = "";
-        try (val conn = getConnection();
-             val statusStmt = conn.prepareStatement(amountSQL)) {
-            statusStmt.setString(1, paymentId);
-            try (val rs = statusStmt.executeQuery()) {
-                if (rs.next()) {
-                    amount = rs.getString("amount");
-                }
-            }
+    public static String getPaymentAmount() {
+        val extractAmount = "SELECT * FROM payment_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val transactionId = runner.query(conn, extractAmount, new BeanHandler<>(PaymentEntity.class));
+            return transactionId.getAmount();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return amount;
+        return null;
     }
 
-    public static String getStatusForPaymentWithDebitCard(String paymentId) {
-        String statusSQL = "SELECT status FROM payment_entity WHERE transaction_id =?;";
-        String status = "";
-        try (val conn = getConnection();
-             val statusStmt = conn.prepareStatement(statusSQL)) {
-            statusStmt.setString(1, paymentId);
-            try (val rs = statusStmt.executeQuery()) {
-                if (rs.next()) {
-                    status = rs.getString("status");
-                }
-            }
+    public static String getCreditId() {
+        val extractBankId = "SELECT * FROM credit_request_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val bankId = runner.query(conn, extractBankId, new BeanHandler<>(CreditRequestEntity.class));
+            return bankId.getBank_id();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return status;
+        return null;
     }
 
-    public static String getStatusForPaymentWithCreditCard(String paymentId) {
-        String statusSQL = "SELECT status FROM credit_request_entity WHERE bank_id =?;";
-        String status = "";
-        try (val conn = getConnection();
-             val statusStmt = conn.prepareStatement(statusSQL)) {
-            statusStmt.setString(1, paymentId);
-            try (val rs = statusStmt.executeQuery()) {
-                if (rs.next()) {
-                    status = rs.getString("status");
-                }
-            }
+    public static String getOrderPaymentId() {
+        val extractPaymentId = "SELECT * FROM order_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val paymentId = runner.query(conn, extractPaymentId, new BeanHandler<>(OrderEntity.class));
+            return paymentId.getPayment_id();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return status;
+        return null;
+    }
+
+    public static String getOrderCreditId() {
+        val extractCreditId = "SELECT * FROM order_entity";
+        val runner = new QueryRunner();
+        try (val conn = getConnection()) {
+            val paymentId = runner.query(conn, extractCreditId, new BeanHandler<>(OrderEntity.class));
+            return paymentId.getPayment_id();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
