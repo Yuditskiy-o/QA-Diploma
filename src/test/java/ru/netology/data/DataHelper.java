@@ -8,11 +8,11 @@ public class DataHelper {
 
     @Value
     public static class CardValidInformationModel {
-        String Number;
-        String Month;
-        String Year;
-        String Owner;
-        String Сvv;
+        String number;
+        String month;
+        String year;
+        String owner;
+        String cvv;
     }
 
     public static CardValidInformationModel getValidApprovedCardData() {

@@ -31,16 +31,16 @@ public class PaymentPage {
         monthField.setValue(info.getMonth());
         yearField.setValue(info.getYear());
         ownerField.setValue(info.getOwner());
-        cvvField.setValue(info.getСvv());
+        cvvField.setValue(info.getCvv());
         continueButton.click();
     }
 
     public void waitIfSuccessMessage() {
-        successNotification.waitUntil(Condition.visible, 10000);
+        successNotification.waitUntil(Condition.visible, 15000);
     }
 
     public void waitIfFailMessage() {
-        failNotification.waitUntil(Condition.visible, 10000);
+        failNotification.waitUntil(Condition.visible, 15000);
     }
 
     public void waitIfWrongFormatMessage() {

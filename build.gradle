@@ -31,9 +31,13 @@ dependencies {
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'io.qameta.allure:allure-selenide:2.13.0'
     testImplementation 'io.rest-assured:rest-assured:4.3.0'
+    testImplementation 'org.postgresql:postgresql:42.2.14'
 }
 
 test {
     useJUnitPlatform()
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+//    systemProperty 'database.url', System.getProperty('database.url')
+//    systemProperty 'database.login', System.getProperty('database.login', 'app')
+//    systemProperty 'database.password', System.getProperty('database.password', 'pass')
 }

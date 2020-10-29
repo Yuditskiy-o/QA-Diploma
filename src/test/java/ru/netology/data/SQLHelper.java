@@ -8,9 +8,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLHelper {
+
+//    private static Connection getConnection() throws SQLException {
+//        val url = System.getProperty("database.url");
+//        val login = System.getProperty("database.login");
+//        val password = System.getProperty("database.password");
+//
+//        return DriverManager.getConnection(url, login, password);
+//    }
+
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
-                "jdbc:mysql://192.168.99.100:3306/app", "app", "pass");
+                "jdbc:postgresql://192.168.99.100:5432/app", "app", "pass");
     }
 
     public static void cleanDb() {
