@@ -46,8 +46,11 @@ public class HappyPathTest {
             paymentPage.fillForm(info);
             paymentPage.waitIfSuccessMessage();
             val paymentId = getPaymentId();
+            val expectedAmount = "4500000";
+            val actualAmount = getPaymentAmount(paymentId);
             val expectedStatus = "APPROVED";
             val actualStatus = getStatusForPaymentWithDebitCard(paymentId);
+            assertEquals(expectedAmount, actualAmount);
             assertEquals(expectedStatus, actualStatus);
         }
 
