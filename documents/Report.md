@@ -7,7 +7,7 @@
 
 ## При подключении к СУБД MySQL
 
-![image](https://i.gyazo.com/9297c3e0f2e982fca767780b6c366979.png)
+![image](https://i.gyazo.com/dbda59d02b8fc31c18aaa048cd7d901a.png)
 
 Из них:
 - успешных оказалось **26** кейсов → **52%**; 
@@ -29,7 +29,7 @@
 
 **Результаты тестов, MySQL**
 
-![image](https://i.gyazo.com/69bd8768776e5c1c9559e5bc33efa1fb.png)
+![image](https://i.gyazo.com/5067d60f43921b22593b10ccaf316647.png)
 
 **Результаты тестов, PostgreSQL**
 
