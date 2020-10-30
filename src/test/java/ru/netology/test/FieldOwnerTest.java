@@ -11,7 +11,6 @@ import ru.netology.pages.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataHelper.*;
-import static ru.netology.data.DataHelper.getInvalidOwnerWithSymbols;
 
 public class FieldOwnerTest {
     MainPage mainPage = new MainPage();
@@ -25,7 +24,6 @@ public class FieldOwnerTest {
 
     @AfterAll
     static void tearDown() {
-        SQLHelper.cleanDb();
         SelenideLogger.removeListener("allure");
     }
 
@@ -36,6 +34,11 @@ public class FieldOwnerTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithDebitCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test
@@ -102,6 +105,11 @@ public class FieldOwnerTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithCreditCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test

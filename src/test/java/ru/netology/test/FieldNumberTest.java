@@ -24,7 +24,6 @@ public class FieldNumberTest {
 
     @AfterAll
     static void tearDown() {
-        SQLHelper.cleanDb();
         SelenideLogger.removeListener("allure");
     }
 
@@ -35,6 +34,11 @@ public class FieldNumberTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithDebitCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test
@@ -66,6 +70,11 @@ public class FieldNumberTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithCreditCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test

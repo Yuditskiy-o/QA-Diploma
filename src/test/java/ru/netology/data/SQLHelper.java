@@ -12,18 +12,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLHelper {
+    private static final String url = System.getProperty("db.url");
+    private static final String user = System.getProperty("db.user");
+    private static final String password = System.getProperty("db.password");
+    private static Connection conn;
 
-//    private static Connection getConnection() throws SQLException {
-//        val url = System.getProperty("database.url");
-//        val login = System.getProperty("database.login");
-//        val password = System.getProperty("database.password");
-//
-//        return DriverManager.getConnection(url, login, password);
-//    }
-
-    private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(
-                "jdbc:mysql://192.168.99.100:3306/app ", "app", "pass");
+    private static Connection getConnection() {
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
     }
 
     public static void cleanDb() {

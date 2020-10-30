@@ -11,6 +11,7 @@ import ru.netology.pages.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static ru.netology.data.DataHelper.getValidApprovedCardData;
 import static ru.netology.data.DataHelper.getValidDeclinedCardData;
 import static ru.netology.data.SQLHelper.*;
@@ -27,7 +28,6 @@ public class HappyPathTest {
 
     @AfterAll
     static void tearDown() {
-        SQLHelper.cleanDb();
         SelenideLogger.removeListener("allure");
     }
 
@@ -38,6 +38,11 @@ public class HappyPathTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithDebitCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test
@@ -52,7 +57,9 @@ public class HappyPathTest {
             val actualStatus = getStatusForPaymentWithDebitCard();
             assertEquals(expectedStatus, actualStatus);
             val expectedId = getPaymentId();
+            assertNotNull(expectedId);
             val actualId = getOrderPaymentId();
+            assertNotNull(actualId);
             assertEquals(expectedId, actualId);
         }
 
@@ -65,17 +72,25 @@ public class HappyPathTest {
             val actualStatus = getStatusForPaymentWithDebitCard();
             assertEquals(expectedStatus, actualStatus);
             val expectedId = getPaymentId();
+            assertNotNull(expectedId);
             val actualId = getOrderPaymentId();
+            assertNotNull(actualId);
             assertEquals(expectedId, actualId);
         }
     }
 
     @Nested
     public class HappyPath2OfCreditCardTests {
+
         @BeforeEach
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithCreditCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test
@@ -87,7 +102,9 @@ public class HappyPathTest {
             val actualStatus = getStatusForPaymentWithCreditCard();
             assertEquals(expectedStatus, actualStatus);
             val expectedId = getCreditId();
+            assertNotNull(expectedId);
             val actualId = getOrderCreditId();
+            assertNotNull(actualId);
             assertEquals(expectedId, actualId);
         }
 
@@ -100,7 +117,9 @@ public class HappyPathTest {
             val actualStatus = getStatusForPaymentWithCreditCard();
             assertEquals(expectedStatus, actualStatus);
             val expectedId = getCreditId();
+            assertNotNull(expectedId);
             val actualId = getOrderCreditId();
+            assertNotNull(actualId);
             assertEquals(expectedId, actualId);
         }
     }

@@ -11,7 +11,6 @@ import ru.netology.pages.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataHelper.*;
-import static ru.netology.data.DataHelper.getInvalidFormatMonthIsOneDigit;
 
 public class FieldMonthTest {
     MainPage mainPage = new MainPage();
@@ -25,7 +24,6 @@ public class FieldMonthTest {
 
     @AfterAll
     static void tearDown() {
-        SQLHelper.cleanDb();
         SelenideLogger.removeListener("allure");
     }
 
@@ -36,6 +34,11 @@ public class FieldMonthTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithDebitCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test
@@ -74,6 +77,11 @@ public class FieldMonthTest {
         void setUpAllTests() {
             open("http://localhost:8080");
             mainPage.payWithCreditCard();
+        }
+
+        @AfterEach
+        void cleanDb() {
+            SQLHelper.cleanDb();
         }
 
         @Test
