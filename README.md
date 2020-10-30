@@ -59,8 +59,13 @@ r 5.038)
 3. **Запускаем авто-тесты**
 
 Для этого открываем еще одну вкладку в Терминале и вводим следующую команду:
+- для СУБД **MySQL**:
 ```java
-gradlew clean test
+gradlew clean test -Ddb.url=jdbc:mysql://192.168.99.100:3306/app 
+```
+- для СУБД **PostgreSQL**:
+```java
+gradlew clean test -Ddb.url=jdbc:postgresql://192.168.99.100:5432/app
 ```
 ---------
 
