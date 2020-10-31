@@ -1,44 +1,24 @@
 package ru.netology.test;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
-import org.junit.jupiter.api.*;
-import ru.netology.data.SQLHelper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import ru.netology.pages.MainPage;
 import ru.netology.pages.PaymentPage;
 
-import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataHelper.*;
 
-public class FieldOwnerTest {
+public class FieldOwnerTest extends TestBase {
     MainPage mainPage = new MainPage();
     PaymentPage paymentPage = new PaymentPage();
-
-    @BeforeAll
-    static void setUp() {
-        Configuration.screenshots = false;
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
-    @AfterAll
-    static void tearDown() {
-        SelenideLogger.removeListener("allure");
-    }
 
     @Nested
     public class FieldOwnerOfDebitCardTests {
 
         @BeforeEach
-        void setUpAllTests() {
-            open(System.getProperty("sut.url"));
+        void setUpAllDebitCardTests() {
             mainPage.payWithDebitCard();
-        }
-
-        @AfterEach
-        void cleanDb() {
-            SQLHelper.cleanDb();
         }
 
         @Test
@@ -102,14 +82,8 @@ public class FieldOwnerTest {
     public class FieldOwnerOfCreditCardTests {
 
         @BeforeEach
-        void setUpAllTests() {
-            open(System.getProperty("sut.url"));
+        void setUpAllCreditCardTests() {
             mainPage.payWithCreditCard();
-        }
-
-        @AfterEach
-        void cleanDb() {
-            SQLHelper.cleanDb();
         }
 
         @Test
