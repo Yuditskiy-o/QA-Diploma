@@ -26,8 +26,7 @@ public class TestBase {
 
     @BeforeEach
     void setUpUrl() {
-        open("http://localhost:8080");
-//        open(System.getProperty("sut.url"));
+        open(System.getProperty("sut.url"));
     }
 
     @AfterEach
