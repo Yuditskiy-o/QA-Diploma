@@ -32,7 +32,7 @@ public class FieldOwnerTest {
 
         @BeforeEach
         void setUpAllTests() {
-            open("http://localhost:8080");
+            open(System.getProperty("sut.url"));
             mainPage.payWithDebitCard();
         }
 
@@ -103,7 +103,7 @@ public class FieldOwnerTest {
 
         @BeforeEach
         void setUpAllTests() {
-            open("http://localhost:8080");
+            open(System.getProperty("sut.url"));
             mainPage.payWithCreditCard();
         }
 

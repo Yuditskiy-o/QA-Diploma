@@ -32,7 +32,7 @@ public class FieldCvvTest {
 
         @BeforeEach
         void setUpAllTests() {
-            open("http://localhost:8080");
+            open(System.getProperty("sut.url"));
             mainPage.payWithDebitCard();
         }
 
@@ -68,7 +68,7 @@ public class FieldCvvTest {
 
         @BeforeEach
         void setUpAllTests() {
-            open("http://localhost:8080");
+            open(System.getProperty("sut.url"));
             mainPage.payWithCreditCard();
         }
 

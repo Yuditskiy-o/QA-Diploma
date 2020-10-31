@@ -32,7 +32,7 @@ public class FieldMonthTest {
 
         @BeforeEach
         void setUpAllTests() {
-            open("http://localhost:8080");
+            open(System.getProperty("sut.url"));
             mainPage.payWithDebitCard();
         }
 
@@ -75,7 +75,7 @@ public class FieldMonthTest {
 
         @BeforeEach
         void setUpAllTests() {
-            open("http://localhost:8080");
+            open(System.getProperty("sut.url"));
             mainPage.payWithCreditCard();
         }
 
