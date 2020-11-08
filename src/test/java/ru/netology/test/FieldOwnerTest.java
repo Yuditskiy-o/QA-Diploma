@@ -14,7 +14,7 @@ public class FieldOwnerTest extends TestBase {
     PaymentPage paymentPage = new PaymentPage();
 
     @Nested
-    public class FieldOwnerOfDebitCardTests {
+    class FieldOwnerOfDebitCardTests {
 
         @BeforeEach
         void setUpAllDebitCardTests() {
@@ -79,7 +79,7 @@ public class FieldOwnerTest extends TestBase {
     }
 
     @Nested
-    public class FieldOwnerOfCreditCardTests {
+    class FieldOwnerOfCreditCardTests {
 
         @BeforeEach
         void setUpAllCreditCardTests() {

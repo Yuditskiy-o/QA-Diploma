@@ -14,7 +14,7 @@ public class FieldCvvTest extends TestBase {
     PaymentPage paymentPage = new PaymentPage();
 
     @Nested
-    public class FieldCvvOfDebitCardTests {
+    class FieldCvvOfDebitCardTests {
 
         @BeforeEach
         void setUpAllDebitCardTests() {
@@ -44,7 +44,7 @@ public class FieldCvvTest extends TestBase {
     }
 
     @Nested
-    public class FieldCvvOfCreditCardTests {
+    class FieldCvvOfCreditCardTests {
 
         @BeforeEach
         void setUpAllCreditCardTests() {

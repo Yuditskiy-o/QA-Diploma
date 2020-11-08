@@ -18,7 +18,7 @@ public class HappyPathTest extends TestBase {
     PaymentPage paymentPage = new PaymentPage();
 
     @Nested
-    public class HappyPath1OfDebitCardTests {
+    class HappyPath1OfDebitCardTests {
 
         @BeforeEach
         void setUpAllDebitCardTests() {
@@ -60,7 +60,7 @@ public class HappyPathTest extends TestBase {
     }
 
     @Nested
-    public class HappyPath2OfCreditCardTests {
+    class HappyPath2OfCreditCardTests {
 
         @BeforeEach
         void setUpAllCreditCardTests() {

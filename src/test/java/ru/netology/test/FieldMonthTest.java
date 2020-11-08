@@ -14,7 +14,7 @@ public class FieldMonthTest extends TestBase {
     PaymentPage paymentPage = new PaymentPage();
 
     @Nested
-    public class FieldMonthOfDebitCardTests {
+    class FieldMonthOfDebitCardTests {
 
         @BeforeEach
         void setUpAllDebitCardTests() {
@@ -51,7 +51,7 @@ public class FieldMonthTest extends TestBase {
     }
 
     @Nested
-    public class FieldMonthOfCreditCardTests {
+    class FieldMonthOfCreditCardTests {
 
         @BeforeEach
         void setUpAllCreditCardTests() {
