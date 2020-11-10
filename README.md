@@ -21,7 +21,7 @@
 1. Загрузите на свой ПК данный репозиторий. Для этого либо воспользуйтесь командой git clone, либо в IntelliJ IDEA нажмите "Get from Version Control" и вставьте ссылку https://github.com/Yuditskiy-o/QA-Diploma в поле URL, нажмите "Clone".
 ![image](https://i.gyazo.com/d39a0b3f4e85db1b434e515a683d4cfd.png)
 ![image](https://i.gyazo.com/401bf3ea85f02b6ebd91793de9550d57.png)
-2. Установите Docker Desktop или Docker Toolbox (в зависимости от вашей ОС). Ознакомьте с [этой](https://github.com/netology-code/aqa-homeworks/blob/aqa4/docker/installation.md) инструкцией.
+2. Установите Docker Desktop или Docker Toolbox (в зависимости от вашей ОС). Ознакомьтесь с [этой](https://github.com/netology-code/aqa-homeworks/blob/aqa4/docker/installation.md) инструкцией.
 3. Если установили Docker Toolbox, то запустите ярлык "Docker Quickstart Terminal" на рабочем столе, дождитесь появления вот такого окна:
 ![image](https://i.gyazo.com/c9c95ee6362f841dd2f22d63844404e8.png)
 
@@ -44,7 +44,7 @@ java -Dspring.datasource.url=jdbc:mysql://192.168.99.100:3306/app -jar artifacts
 ```
 - для СУБД **PostgreSQL**:
 ```java
-java -Dspring.datasource-postgresql.url=jdbc:postgresql://192.168.99.100:5432/app -jar artifacts/aqa-shop.jar
+java -Dspring.datasource.url=jdbc:postgresql://192.168.99.100:5432/app -jar artifacts/aqa-shop.jar
 ```
 Дожидаемся сообщения, которое будет означать готовность SUT к работе:
 ```java
